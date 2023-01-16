@@ -8,16 +8,14 @@
            class="form-input"
            name="email"
            placeholder="Enter User Email"
-           ngModel
-           #email
+           [(ngModel)]="email"
          />
          <input
          type="password"
          class="form-input"
          name="password"
          placeholder="Enter User Password"
-         ngModel
-         #password
+         [(ngModel)]="password"
        />
        <br>
        <br>
@@ -25,6 +23,9 @@
        <br>
        <br>
        <p>Already have an Account ? <a href="/login">Login</a></p>
+       <div id="google" > 
+        <button class="btn btn-light" (click)="signInWithGoogle()"><img src="../../../assets/icons8-google-48.png"> Sign In with Google</button>
+      </div>
        </form>
       </div> 
       </div>
