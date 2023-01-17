@@ -14,11 +14,12 @@ import { HeaderComponent } from './components/header/header.component';
 import {AngularFireModule} from '@angular/fire/compat'
 import { environment } from 'src/environments/environment';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore/';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { UsersComponent } from './components/users/users.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
+import {HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
@@ -43,6 +44,8 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
     AngularFireModule.initializeApp(environment.firebase),
     FormsModule,
     AngularFirestoreModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,58 +1,140 @@
-<div class="card shadow border-0 mb-7">
-    <div class="card-header">
-        <h5 class="mb-0">Applications</h5>
+<div class="containers">
+    <div class="card shadow border-0 mb-7">
+        <div class=" col-12 text-sm-end">
+            <div class="mx-n1">
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUser" type="submit"><i
+                        class="bi bi-plus"></i>Add User</button>
+            </div>
+        </div>
     </div>
     <div class="table-responsive">
         <table class="table table-hover table-nowrap">
             <thead class="thead-light">
                 <tr>
                     <th scope="col">Name</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Company</th>
-                    <th scope="col">Offer</th>
-                    <th scope="col">Meeting</th>
-                    <th></th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Contact</th>
+                    <th scope="col">City</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr *ngFor="let user of user">
                     <td>
-                        <img alt="..."
-                            src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
-                            class="avatar avatar-sm rounded-circle me-2">
                         <a class="text-heading font-semibold" href="#">
-                            Robert Fox
+                            {{user.name}}
                         </a>
                     </td>
                     <td>
-                        Feb 15, 2021
+                        {{user.email}}
                     </td>
                     <td>
-                        <img alt="..." src="https://preview.webpixels.io/web/img/other/logos/logo-1.png"
-                            class="avatar avatar-xs rounded-circle me-2">
                         <a class="text-heading font-semibold" href="#">
-                            Dribbble
+                           {{user.contact}}
                         </a>
                     </td>
                     <td>
-                        $3.500
+                        {{user.city}}
                     </td>
-                    <td>
-                        <span class="badge badge-lg badge-dot">
-                            <i class="bg-success"></i>Scheduled
-                        </span>
-                    </td>
-                    <td class="text-end">
-                        <a href="#" class="btn btn-sm btn-neutral">View</a>
-                        <button type="button"
-                            class="btn btn-sm btn-square btn-neutral text-danger-hover">
+                    <td class="text-end d-flex justify-content-around">
+                        <button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover"
+                            data-bs-toggle="modal" data-bs-target="#editUser" (click)="editUser(user)">
+                            <a class="btn btn-sm btn-neutral"><i class="bi bi-pencil-square"></i></a>
+                        </button>
+
+
+                        <button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover" (click)="delete(user)">
                             <i class="bi bi-trash"></i>
                         </button>
                     </td>
             </tbody>
         </table>
     </div>
-    <div class="card-footer border-0 py-5">
-        <span class="text-muted text-sm">Showing 10 items out of 250 results found</span>
+    
+
+
+
+    <!-- Add employee modal -->
+    <div class="modal fade overflow-hiddens" id="addUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalLabel">Add new User</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <form [formGroup]="userDetail">
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Name </label>
+                            <input type="text" formControlName="name" class="form-control" id="name"
+                                aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Email</label>
+                            <input type="email" formControlName="email" class="form-control" id="email"
+                                aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Contact </label>
+                            <input type="number" formControlName="contact" class="form-control" id="contact"
+                                aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">City</label>
+                            <input type="text" formControlName="city" class="form-control" id="city"
+                                aria-describedby="emailHelp">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="addUsers()">Add User</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
+
+
+
+    <!-- Edit employee modal -->
+    <div class="modal fade overflow-hiddens" id="editUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalLabel">Update user</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <form [formGroup]="userDetail">
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Name </label>
+                            <input type="text" formControlName="name" class="form-control" id="name"
+                                aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Email</label>
+                            <input type="email" formControlName="email" class="form-control" id="email"
+                                aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Contact </label>
+                            <input type="number" formControlName="contact" class="form-control" id="contact"
+                                aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">City</label>
+                            <input type="text" formControlName="city" class="form-control" id="city"
+                                aria-describedby="emailHelp">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="update()">Update User</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>

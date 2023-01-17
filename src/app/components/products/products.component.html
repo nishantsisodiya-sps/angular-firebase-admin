@@ -1,6 +1,11 @@
-<div class="card" style="width: 18rem;">
-    <img class="card-img-top" src="..." alt="Card image cap">
+<div class="bost">
+  <div class="card" style="width: 18rem;" *ngFor="let items of products">
+    <img class="card-img-top" src="{{items.thumbnail}}" alt="Card image cap" height="230" width="180">
     <div class="card-body">
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <p class="card-text">{{items.title}}</p>
+      <p class="card-text"><b>Price : </b> $ {{items.price}}</p>
+      <p class="card-text"><b>Discount : </b> {{items.discountPercentage}} % Off</p>
+      <p class="card-text">{{items.description}}</p>
     </div>
   </div>
+</div>
