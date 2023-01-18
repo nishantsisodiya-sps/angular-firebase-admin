@@ -1,7 +1,7 @@
-export class users {
-    id : string = '';
-    name : string = '';
-    email : string = '';
-    contact : string ='';
-    city : string = '';
+export interface users {
+    id : string 
+    name : string 
+    email : string 
+    contact : string 
+    city : string 
 }

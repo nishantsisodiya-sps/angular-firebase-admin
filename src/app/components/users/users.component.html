@@ -1,7 +1,8 @@
 <div class="containers">
-    <div class="card shadow border-0 mb-7">
+    <div id="cards" class="card shadow border-0 mb-7">
+        <h2 class="text-danger text-center d-inline">Add Users</h2>
         <div class=" col-12 text-sm-end">
-            <div class="mx-n1">
+            <div id="btnuser" class="mx-n1">
                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUser" type="submit"><i
                         class="bi bi-plus"></i>Add User</button>
             </div>
@@ -129,7 +130,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="update()">Update User</button>
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="update(myUsers)">Update User</button>
                         </div>
                     </form>
                 </div>

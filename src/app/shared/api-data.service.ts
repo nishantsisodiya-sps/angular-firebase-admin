@@ -31,7 +31,7 @@ export class ApiDataService {
   }
 
   update(user:users){
-    this.deleteUser(user);
+    this.deleteUser(user)
     this.addUser(user)
   }
 

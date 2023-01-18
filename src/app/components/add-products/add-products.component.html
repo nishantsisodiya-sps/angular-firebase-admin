@@ -1,1 +1,104 @@
-<p>add-products works!</p>
+<div class="main">
+<div class="card border-1">
+    <h2 class="text-danger text-center d-inline">Add New Products</h2>
+    <span>
+       <button id="btnproduct" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProducts" type="submit"><i
+                    class="bi bi-plus"></i>Add Product</button>
+    </span>
+</div>
+<hr>
+
+<div class="col-md-12">
+
+    <div class="mb-3 mt-3">
+      <h2 class="text-primary text-center">New Products list</h2>
+    </div>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Image</th>
+          <th scope="col">Name</th>
+          <th scope="col">Price</th>
+          <th scope="col">Discount</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let file of listOfFiles">
+          <th><img id="img" src="{{file.url}}" alt="" height="55px"></th>
+          <td>{{file.names}}</td>
+          <td>₹ {{file.price}}</td>
+          <td>{{file.discount}}%</td>
+          <td>
+            <a href="" class="btn btn-outline-info" type="button" download>Download</a>
+            <a class="btn btn-outline-danger ms-2" type="button" (click)="deleteFile(file)">Delete</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+
+<!-- Modal for add products -->
+
+  <div class="modal fade overflow-hiddens" id="addProducts" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">Add Products</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <form [formGroup]="myFiles">
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Name</label>
+                        <input type="text" formControlName="names" class="form-control" id="names"
+                            aria-describedby="emailHelp">
+                    </div>
+                   
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Price</label>
+                        <input type="number" formControlName="price" class="form-control" id="price"
+                            aria-describedby="emailHelp">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Discounts</label>
+                        <input type="number" formControlName="discount" class="form-control" id="discount"
+                            aria-describedby="emailHelp">
+                    </div>
+
+                    <div class="card border-1 shadow">
+                      <div class="card-body">
+                        <div>
+                          <input id="inputfile" type="file" class="text-nowrap text-truncate file" (change)="selectFile($event)">
+                          
+                        </div>
+              
+                        <div class="progress mt-2">
+                          <div class="progress-bar progress-bar-info" role="progressbar" attr.aria-valuenow="{{percentage}}"
+                            aria-valuemin="0" aria-valuemax="100" [ngStyle]="{ width: percentage + '%' }">
+                            {{percentage}}%
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+              
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-outline-success" [disabled]="!selectedFiles"
+                          (click)="uploadFile()">Upload</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+

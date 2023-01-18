@@ -127,7 +127,7 @@ input.ng-touched.ng-invalid{
  */
 
 body{
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
  .user-auth h1{

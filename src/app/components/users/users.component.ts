@@ -14,12 +14,12 @@ export class UsersComponent implements OnInit {
   user:users [] = []
   
   myUsers : users = {
-  id: '',
-  name: '', 
-  email:'',
-  contact: '',
-  city:'',
-}
+    id: '',
+    name: '',
+    email: '',
+    contact: '',
+    city: '',
+  }
   id : string = '';
   name : string = '';
   email : string = '';
@@ -75,21 +75,22 @@ export class UsersComponent implements OnInit {
  }
 
  editUser(user:users){
-  this.editIndex = user;
   this.userDetail.controls['name'].setValue(user.name)
   this.userDetail.controls['email'].setValue(user.email)
   this.userDetail.controls['contact'].setValue(user.contact)
   this.userDetail.controls['city'].setValue(user.city)
  }
 
- update(){
-    this.myUsers.name = this.userDetail.value.name;
-    this.myUsers.email = this.userDetail.value.email
-    this.myUsers.contact = this.userDetail.value.contact
-    this.myUsers.city = this.userDetail.value.city
-
-    this.fetchApi.update(this.myUsers)
-    this.getAllUsers()
+ update(user: users){
+  // this.myUsers.id = '';
+  // this.myUsers.name = this.userDetail.value.name;
+  // this.myUsers.email = this.userDetail.value.email;
+  // this.myUsers.contact = this.userDetail.value.contact;
+  // this.myUsers.city = this.userDetail.value.city;
+  
+  // this.fetchApi.update(user)
+  console.log(user)
+    
  }
 
 }
