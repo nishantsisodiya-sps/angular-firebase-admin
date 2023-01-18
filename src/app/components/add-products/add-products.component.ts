@@ -102,4 +102,8 @@ export class AddProductsComponent implements OnInit {
     }
   }
 
+
+  download(){
+    console.log(this.currentFileUpload.url)
+  }
 }

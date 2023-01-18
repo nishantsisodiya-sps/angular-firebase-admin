@@ -1,6 +1,6 @@
 <div class="main">
 <div class="card border-1">
-    <h2 class="text-danger text-center d-inline">Add New Products</h2>
+    <h2 id="h2" class="text-danger text-center d-inline">Add New Products</h2>
     <span>
        <button id="btnproduct" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProducts" type="submit"><i
                     class="bi bi-plus"></i>Add Product</button>
@@ -17,11 +17,11 @@
     <table class="table">
       <thead>
         <tr>
-          <th scope="col">Image</th>
-          <th scope="col">Name</th>
-          <th scope="col">Price</th>
-          <th scope="col">Discount</th>
-          <th scope="col">Action</th>
+          <th scope="col"><b>Image</b></th>
+          <th scope="col"><b>Name</b></th>
+          <th scope="col"><b>Price</b></th>
+          <th scope="col"><b>Discount</b></th>
+          <th scope="col"><b>Action</b></th>
         </tr>
       </thead>
       <tbody>
@@ -30,9 +30,14 @@
           <td>{{file.names}}</td>
           <td>₹ {{file.price}}</td>
           <td>{{file.discount}}%</td>
-          <td>
-            <a href="" class="btn btn-outline-info" type="button" download>Download</a>
-            <a class="btn btn-outline-danger ms-2" type="button" (click)="deleteFile(file)">Delete</a>
+          <td class="btns">
+            <button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover" (click)="download()">
+              <i class="bi bi-download"></i>
+          </button>
+          &nbsp;
+            <button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover" (click)="deleteFile(file)">
+              <i class="bi bi-trash"></i>
+          </button>
           </td>
         </tr>
       </tbody>
@@ -90,7 +95,7 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-outline-success" [disabled]="!selectedFiles"
+                        <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal" [disabled]="!selectedFiles"
                           (click)="uploadFile()">Upload</button>
                     </div>
                 </form>

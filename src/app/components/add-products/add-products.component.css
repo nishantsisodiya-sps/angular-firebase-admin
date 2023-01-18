@@ -8,7 +8,7 @@
 }
 #btnproduct{
     position: absolute;
-    right: 1%;
+    right: 0%;
     bottom: -1%;
 }
 #inputfile{
@@ -16,4 +16,8 @@
 }
 #img{
     height: 55px !important; 
+}
+#h2{
+    position: relative;
+    top: 7px;
 }
