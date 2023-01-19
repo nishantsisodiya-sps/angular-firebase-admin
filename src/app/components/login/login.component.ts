@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
     this.auth.login(this.email , this.password);
     this.email = ""
     this.password = ""
-    this.toast.success({detail:"Logged in",summary:"Logged in successfully", duration:3000})
+    
   }
 
   
