@@ -21,6 +21,7 @@ import { UsersComponent } from './components/users/users.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import {HttpClientModule} from '@angular/common/http';
 import {NgxChartsModule} from '@swimlane/ngx-charts'
+import { NgToastModule } from 'ng-angular-popup';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import {NgxChartsModule} from '@swimlane/ngx-charts'
     AngularFirestoreModule,
     HttpClientModule,
     ReactiveFormsModule,
-    NgxChartsModule
+    NgxChartsModule,
+    NgToastModule
   ],
   providers: [],
   bootstrap: [AppComponent]

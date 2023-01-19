@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { GoogleAuthProvider } from '@angular/fire/auth'
+import { NgToastService } from 'ng-angular-popup';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import { GoogleAuthProvider } from '@angular/fire/auth'
 export class AuthService {
   show: boolean = false
 
-  constructor(private fireAuth:AngularFireAuth , private router:Router) { }
+  constructor(private fireAuth:AngularFireAuth , private router:Router , private toast:NgToastService) { }
 
   //login method
 
@@ -19,9 +20,10 @@ export class AuthService {
 
       if(res.user?.emailVerified == true){
         this.router.navigate(['/dashboard'])
-        
+        this.toast.success({detail:"Logged in",summary:"Logged in successfully", duration:3000})
       }else{
         this.router.navigate(['/verify-email'])
+        this.toast.error({detail:"Not found",summary:"Admin not found", duration:3000})
       }
 
 
@@ -38,9 +40,12 @@ export class AuthService {
     this.fireAuth.createUserWithEmailAndPassword(email , password).then(res=>{
         this.router.navigate(['/login'])
         this.sendEmailForVarification(res.user);
+        this.toast.success({detail:"Admin Registerd",summary:"Registered successfully", duration:3000})
     },err=>{
       console.log("something went wrong")
       this.router.navigate(['/register'])
+      this.toast.error({detail:"Error",summary:"Email already exist", duration:3000})
+
     })
   }
 
@@ -51,6 +56,7 @@ export class AuthService {
     this.fireAuth.signOut().then(()=>{
       localStorage.removeItem('token')
       this.router.navigate(['/login'])
+      this.toast.info({detail:"Logged out",summary:"Logged out successfully", duration:3000})
     },err=>{
       console.log(err.message)
     })
@@ -75,6 +81,7 @@ export class AuthService {
   forgotPassword(email:string){
     this.fireAuth.sendPasswordResetEmail(email).then(()=>{
       this.router.navigate(['/verify-email'])
+      
     },err=>{
       console.log("Something went wrong")
     })

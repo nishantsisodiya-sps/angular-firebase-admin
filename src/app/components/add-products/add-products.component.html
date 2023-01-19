@@ -27,7 +27,7 @@
       <tbody>
         <tr *ngFor="let file of listOfFiles">
           <th><img id="img" src="{{file.url}}" alt="" height="55px"></th>
-          <td>{{file.names}}</td>
+          <td>{{file.names | titlecase}}</td>
           <td>₹ {{file.price}}</td>
           <td>{{file.discount}}%</td>
           <td class="btns">
@@ -95,7 +95,7 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal" [disabled]="!selectedFiles"
+                        <button type="button" class="btn btn-outline-success" [disabled]="!selectedFiles"
                           (click)="uploadFile()">Upload</button>
                     </div>
                 </form>

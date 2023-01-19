@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-sidenav',
@@ -8,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class SidenavComponent implements OnInit {
   show:boolean = false
-  constructor(private router:Router) { }
+  constructor(private router:Router , private toast:NgToastService) { }
 
   ngOnInit(): void {
     this.adminLogIn()
@@ -17,6 +18,7 @@ export class SidenavComponent implements OnInit {
   logout(){
     localStorage.removeItem('token')
     this.router.navigate(['/login'])
+    this.toast.info({detail:"Logged out",summary:"Logged out successfully", duration:3000})
   }
 
   adminLogIn(){

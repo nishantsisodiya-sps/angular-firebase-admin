@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { user } from '@angular/fire/auth';
 import {FormBuilder , FormGroup , FormControl} from '@angular/forms'
+import { NgToastService } from 'ng-angular-popup';
 import { users } from 'src/app/model/user';
 import { ApiDataService } from 'src/app/shared/api-data.service';
 @Component({
@@ -28,7 +29,7 @@ export class UsersComponent implements OnInit {
   index: any;
 
   
-  constructor(private formBuilder:FormBuilder , private fetchApi:ApiDataService) { }
+  constructor(private formBuilder:FormBuilder , private fetchApi:ApiDataService ,private toast:NgToastService) { }
   
   editIndex : any | undefined;
   
@@ -54,6 +55,7 @@ export class UsersComponent implements OnInit {
     this.myUsers.city = this.userDetail.value.city;
 
     this.fetchApi.addUser(this.myUsers);
+    this.toast.success({detail:"user Added",summary:"User added successfully", duration:3000})
   }
 
  getAllUsers(){
@@ -71,6 +73,7 @@ export class UsersComponent implements OnInit {
  delete(user:users){
   if(window.confirm('Are you sure ? You want to delete'+ user.name + '?')){
     this.fetchApi.deleteUser(user);
+    this.toast.warning({detail:"Deleted",summary:"user Deleted successfully", duration:3000})
   }
  }
 

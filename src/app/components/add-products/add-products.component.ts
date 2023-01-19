@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { NgToastService } from 'ng-angular-popup';
 import { finalize } from 'rxjs';
 import { FileMetaData, fileData } from 'src/app/model/product';
 import { ProductManageService } from 'src/app/shared/product-manage.service';
@@ -31,7 +32,7 @@ export class AddProductsComponent implements OnInit {
 
   }
   constructor(private productsManage: ProductManageService, private firestorage: AngularFireStorage
-    , private firestore: AngularFirestore, private formBuilder: FormBuilder) { }
+    , private firestore: AngularFirestore, private formBuilder: FormBuilder , private toast:NgToastService) { }
 
   ngOnInit(): void {
     this.myFiles = this.formBuilder.group({
@@ -66,7 +67,7 @@ export class AddProductsComponent implements OnInit {
         this.currentFileUpload.price = this.myFiles.value.price;
         this.currentFileUpload.discount = this.myFiles.value.discount;
         this.productsManage.saveDataOfFile(this.currentFileUpload);
-        
+        this.toast.success({detail:"Uploaded",summary:"Product uploaded successfully", duration:3000})
       
       })
     })
@@ -99,6 +100,7 @@ export class AddProductsComponent implements OnInit {
     if (window.confirm('Are you sure you want to delete ' + file.names + '?')) {
       this.productsManage.deleteFile(file);
       this.ngOnInit()
+      this.toast.warning({detail:"Deleted",summary:"Product deleted successfully", duration:3000})
     }
   }
 
