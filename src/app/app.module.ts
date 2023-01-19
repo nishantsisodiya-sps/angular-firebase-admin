@@ -20,7 +20,7 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { UsersComponent } from './components/users/users.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import {HttpClientModule} from '@angular/common/http';
-
+import {NgxChartsModule} from '@swimlane/ngx-charts'
 
 @NgModule({
   declarations: [
@@ -45,7 +45,8 @@ import {HttpClientModule} from '@angular/common/http';
     FormsModule,
     AngularFirestoreModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

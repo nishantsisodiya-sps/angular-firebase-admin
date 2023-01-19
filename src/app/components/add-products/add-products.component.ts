@@ -80,7 +80,7 @@ export class AddProductsComponent implements OnInit {
   }
 
 
-  // Getting all files in inputs
+  // Getting all files
   getAllFiles() {
     this.productsManage.getAllFiles().subscribe(res => {
       this.listOfFiles = res.map((e: any) => {
@@ -104,6 +104,6 @@ export class AddProductsComponent implements OnInit {
 
 
   download(){
-    console.log(this.currentFileUpload.url)
+    
   }
 }

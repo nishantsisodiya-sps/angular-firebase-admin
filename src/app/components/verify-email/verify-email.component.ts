@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFireAuthGuard } from '@angular/fire/compat/auth-guard';
 
 @Component({
   selector: 'app-verify-email',
@@ -7,9 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VerifyEmailComponent implements OnInit {
 
-  constructor() { }
+  constructor(private auth : AngularFireAuth) { }
 
   ngOnInit(): void {
   }
-
 }
