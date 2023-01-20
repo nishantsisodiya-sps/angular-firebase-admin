@@ -1,5 +1,5 @@
 <div class="containers">
-    <div  class="card border-1 mb-7">
+    <div class="card border-1 mb-7">
         <h2 class="text-danger text-center d-inline">Add Users</h2>
         <div class=" col-12 text-sm-end">
             <div id="btnuser" class="mx-n1">
@@ -60,6 +60,7 @@
 
 
     <!-- Add employee modal -->
+    
     <div class="modal fade overflow-hiddens" id="addUser" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog">
@@ -72,24 +73,37 @@
 
                     <form [formGroup]="userDetail">
                         <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Name </label>
+                            <label for="exampleInputEmail1" class="form-label">Name* </label>
                             <input type="text" formControlName="name" class="form-control" id="name"
                                 aria-describedby="emailHelp">
+                            <small class="text-danger"
+                                *ngIf="!userDetail.get('name')?.valid && userDetail.get('name')?.touched">*Please
+                                Enter Your Name</small>
                         </div>
                         <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Email</label>
+                            <label for="exampleInputEmail1" class="form-label">Email*</label>
                             <input type="email" formControlName="email" class="form-control" id="email"
                                 aria-describedby="emailHelp">
+                            <small class="text-danger"
+                                *ngIf="!userDetail.get('email')?.valid && userDetail.get('email')?.touched">*Please Enter a valid Email
+                                </small>
                         </div>
                         <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Contact </label>
+                            <label for="exampleInputEmail1" class="form-label">Contact* </label>
                             <input type="number" formControlName="contact" class="form-control" id="contact"
                                 aria-describedby="emailHelp">
+                            <small class="text-danger"
+                                *ngIf="!userDetail.get('contact')?.valid && userDetail.get('contact')?.touched">*Please
+                                Enter Valid contact number
+                                </small>
                         </div>
                         <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">City</label>
+                            <label for="exampleInputEmail1" class="form-label">City*</label>
                             <input type="text" formControlName="city" class="form-control" id="city"
                                 aria-describedby="emailHelp">
+                            <small class="text-danger"
+                                *ngIf="!userDetail.get('city')?.valid && userDetail.get('city')?.touched">*Please
+                                Enter Your city</small>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -105,6 +119,7 @@
 
 
     <!-- Edit employee modal -->
+
     <div class="modal fade overflow-hiddens" id="editUser" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog">
@@ -130,6 +145,10 @@
                             <label for="exampleInputEmail1" class="form-label">Contact </label>
                             <input type="number" formControlName="contact" class="form-control" id="contact"
                                 aria-describedby="emailHelp">
+                                <small class="text-danger"
+                                *ngIf="!userDetail.get('contact')?.valid && userDetail.get('contact')?.touched">*Please
+                                Enter Valid contact number
+                                </small>
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">City</label>

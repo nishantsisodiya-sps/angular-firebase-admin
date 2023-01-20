@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { NgToastService } from 'ng-angular-popup';
 import { finalize } from 'rxjs';
 import { FileMetaData, fileData } from 'src/app/model/product';
@@ -42,6 +42,12 @@ export class AddProductsComponent implements OnInit {
       url: [''],
     })
     this.getAllFiles()
+
+    this.myFiles = new FormGroup({
+      'names' : new FormControl(null , Validators.required),
+      'price' : new FormControl(null , [Validators.required, Validators.pattern("[0-9]{8}")]),
+      'discount' : new FormControl(null , [Validators.required , Validators.pattern("[0-9]{3}")])
+    })
   }
 
   selectFile(event: any) {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { user } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import {FormBuilder , FormGroup , FormControl} from '@angular/forms'
+import {FormBuilder , FormGroup , FormControl, Validators} from '@angular/forms'
 import { NgToastService } from 'ng-angular-popup';
 import { users } from 'src/app/model/user';
 import { ApiDataService } from 'src/app/shared/api-data.service';
@@ -43,6 +43,16 @@ export class UsersComponent implements OnInit {
       city : [''],
     })
     this.getAllUsers();
+
+    //form validation
+
+    this.userDetail = new FormGroup({
+      'name' : new FormControl(null , Validators.required),
+      'email': new FormControl(null, [Validators.required, Validators.email]),
+      'contact': new FormControl(null, [Validators.required, Validators.pattern("[0-9 ]{10}")]),
+      'city': new FormControl(null, Validators.required)
+    })
+
   }
 
   addUsers(){

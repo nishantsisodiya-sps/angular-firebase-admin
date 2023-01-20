@@ -62,18 +62,27 @@
                         <label for="exampleInputEmail1" class="form-label">Name</label>
                         <input type="text" formControlName="names" class="form-control" id="names"
                             aria-describedby="emailHelp">
+                            <small class="text-danger"
+                            *ngIf="!myFiles.get('names')?.valid && myFiles.get('names')?.touched">*Please
+                            Enter Product Name</small>
                     </div>
                    
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Price</label>
                         <input type="number" formControlName="price" class="form-control" id="price"
                             aria-describedby="emailHelp">
+                            <small class="text-danger"
+                            *ngIf="!myFiles.get('price')?.valid && myFiles.get('price')?.touched">*Please
+                            Enter price</small>
                     </div>
 
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Discounts</label>
                         <input type="number" formControlName="discount" class="form-control" id="discount"
                             aria-describedby="emailHelp">
+                            <small class="text-danger"
+                            *ngIf="!myFiles.get('discount')?.valid && myFiles.get('discount')?.touched">*Please
+                            Enter Discounted price</small>
                     </div>
 
                     <div class="card border-1 shadow">
