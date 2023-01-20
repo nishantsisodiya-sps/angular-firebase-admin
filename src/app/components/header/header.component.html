@@ -1,4 +1,4 @@
-<nav class="nav">
+<nav class="nav" *ngIf="show">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQItEZqYrF2jOoRe9RySqykHndE2xpGDwaIsA&usqp=CAU" alt="logo">
       <h1><a routerLink="/dashboards">Apna Market</a> </h1>
       <!-- <div class="nav-search">
@@ -10,7 +10,7 @@
           <a class="nav-link dropdown-toggle"id="userDropdown" role="button"
               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <img class="img-profile rounded-circle"
-                  src="https://images.unsplash.com/photo-1548142813-c348350df52b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80">
+                  src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp">
           </a>
           <!-- Dropdown - User Information -->
           <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"

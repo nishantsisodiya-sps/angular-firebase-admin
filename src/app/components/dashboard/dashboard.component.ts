@@ -24,7 +24,7 @@ export class DashboardComponent implements OnInit {
 
   //for total sales
   
-  totalsales: any[] =[]
+  Totalsales: any[] = [];
   colorScheme2 :any = {
     domain: ['#5AA454', '#E44D25', '#CFC0BB', '#7aa3e5', '#a8385d', '#aae3f5']
   };
@@ -39,7 +39,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  //for total users
+  //for total users 
 
   percFormat(value: number): string {
     const str = value.toFixed(1);
@@ -58,15 +58,8 @@ export class DashboardComponent implements OnInit {
     console.log("Deactivate", JSON.parse(JSON.stringify(data)));
   }
   
-
-
-
-  
-  
   //for total sales
   onSelects(event: any) {
     console.log(event);
   }
-
-
 }

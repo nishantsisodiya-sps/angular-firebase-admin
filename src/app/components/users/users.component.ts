@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { user } from '@angular/fire/auth';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import {FormBuilder , FormGroup , FormControl} from '@angular/forms'
 import { NgToastService } from 'ng-angular-popup';
 import { users } from 'src/app/model/user';
@@ -29,9 +30,10 @@ export class UsersComponent implements OnInit {
   index: any;
 
   
-  constructor(private formBuilder:FormBuilder , private fetchApi:ApiDataService ,private toast:NgToastService) { }
+  constructor(private formBuilder:FormBuilder , private fetchApi:ApiDataService 
+    ,private toast:NgToastService , private firestore : AngularFirestore) { }
   
-  editIndex : any | undefined;
+    editUserId = ''
   
   ngOnInit(): void {
     this.userDetail = this.formBuilder.group({
@@ -44,10 +46,6 @@ export class UsersComponent implements OnInit {
   }
 
   addUsers(){
-    // if(this.name=='' || this.email=='' || this.contact=='' || this.city==''){
-    //   alert("Please fill all inputs")
-    // }
-
     this.myUsers.id = '';
     this.myUsers.name = this.userDetail.value.name;
     this.myUsers.email = this.userDetail.value.email;
@@ -78,6 +76,7 @@ export class UsersComponent implements OnInit {
  }
 
  editUser(user:users){
+  this.editUserId = user.id
   this.userDetail.controls['name'].setValue(user.name)
   this.userDetail.controls['email'].setValue(user.email)
   this.userDetail.controls['contact'].setValue(user.contact)
@@ -85,15 +84,13 @@ export class UsersComponent implements OnInit {
  }
 
  update(user: users){
-  // this.myUsers.id = '';
-  // this.myUsers.name = this.userDetail.value.name;
-  // this.myUsers.email = this.userDetail.value.email;
-  // this.myUsers.contact = this.userDetail.value.contact;
-  // this.myUsers.city = this.userDetail.value.city;
-  
-  // this.fetchApi.update(user)
-  console.log(user)
-    
+   this.myUsers.id = '';
+   this.myUsers.name = this.userDetail.value.name;
+   this.myUsers.email = this.userDetail.value.email;
+   this.myUsers.contact = this.userDetail.value.contact;
+   this.myUsers.city = this.userDetail.value.city;
+   this.firestore.doc('/users/' +this.editUserId).update(user) 
+   this.toast.success({detail:"Updated",summary:"User Updated successfully", duration:3000})
  }
 
 }

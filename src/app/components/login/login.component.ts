@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
+import { ApiDataService } from 'src/app/shared/api-data.service';
 import { AuthService } from 'src/app/shared/auth.service';
 
 @Component({
@@ -12,12 +13,12 @@ export class LoginComponent implements OnInit {
 
   email:string = ''
   password:string = ''
+ 
 
-  constructor(private auth:AuthService , private router:Router , private toast:NgToastService) { }
+  constructor(private auth:AuthService , private router:Router , private toast:NgToastService,
+    private fetchApi : ApiDataService) { }
 
-  ngOnInit(): void {
-    
-  }
+  ngOnInit(): void {}
 
   login(){
     if(this.email == ''){

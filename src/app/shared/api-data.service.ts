@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { user } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
 import { users } from '../model/user';
@@ -10,6 +9,11 @@ import { users } from '../model/user';
   providedIn: 'root'
 })
 export class ApiDataService {
+  show: boolean =false
+  
+  get getshow(): boolean{
+    return this.show
+  }
 
   constructor( private http:HttpClient , private fireStore : AngularFirestore) { }
 
@@ -29,10 +33,4 @@ export class ApiDataService {
   deleteUser(user:users){
     return this.fireStore.doc('/users/' +user.id).delete()
   }
-
-  update(user:users){
-    this.deleteUser(user)
-    this.addUser(user)
   }
-
-}
