@@ -1,9 +1,15 @@
 .card{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+#tedd{
+color: red;
+
 }
+
 #h2{
     position: relative;
     top: 7px;
+
 }
 .viewPage{
     text-align: center;
@@ -16,10 +22,21 @@
 ::ng-deep .legend-items{
     padding-top: 3%;
     overflow: hidden;
+     /* overflow-y: hidden; */
 }
 ::ng-deep .total-value{
     margin-bottom: 2%;
 }
-::ng-deep .item-value{
+::ng-deep .item-value {
     margin-bottom: 5px;
+    margin-top: 0px !important;
+}
+::ng-deep .legend-item{
+    overflow-y: hidden;
+}
+
+::ng-deep .cell{
+   color: red !important;
+    font-size: 30px !important;
+
 }
