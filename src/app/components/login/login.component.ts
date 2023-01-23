@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 import { ApiDataService } from 'src/app/shared/api-data.service';
 import { AuthService } from 'src/app/shared/auth.service';
+import { HeaderComponent } from '../header/header.component';
+import { SidenavComponent } from '../sidenav/sidenav.component';
 
 @Component({
   selector: 'app-login',
@@ -15,8 +17,7 @@ export class LoginComponent implements OnInit {
   password:string = ''
  
 
-  constructor(private auth:AuthService , private router:Router , private toast:NgToastService,
-    private fetchApi : ApiDataService) { }
+  constructor(private auth:AuthService , public sidenav:SidenavComponent) { }
 
   ngOnInit(): void {}
 
@@ -31,6 +32,8 @@ export class LoginComponent implements OnInit {
     this.auth.login(this.email , this.password);
     this.email = ""
     this.password = ""
+
+    this.sidenav.show = true
     
   }
 

@@ -21,6 +21,7 @@ export class FileMetaData {
     discount : string='';
     url : string = '';
     file : File;
+    
 
     constructor(file : File) {
       this.file = file;

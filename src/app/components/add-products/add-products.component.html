@@ -31,9 +31,9 @@
           <td>₹ {{file.price}}</td>
           <td>{{file.discount}}%</td>
           <td class="btns">
-            <button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover" (click)="download()">
+           <a download href="{{file.url}}" target="blank" type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
               <i class="bi bi-download"></i>
-          </button>
+            </a>
           &nbsp;
             <button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover" (click)="deleteFile(file)">
               <i class="bi bi-trash"></i>

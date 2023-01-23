@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { user } from '@angular/fire/auth';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFirestore, validateEventsArray } from '@angular/fire/compat/firestore';
 import {FormBuilder , FormGroup , FormControl, Validators} from '@angular/forms'
 import { NgToastService } from 'ng-angular-popup';
 import { users } from 'src/app/model/user';
@@ -48,7 +48,7 @@ export class UsersComponent implements OnInit {
 
     this.userDetail = new FormGroup({
       'name' : new FormControl(null , Validators.required),
-      'email': new FormControl(null, [Validators.required, Validators.email]),
+      'email': new FormControl(null, [Validators.required, Validators.email , Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")]),
       'contact': new FormControl(null, [Validators.required, Validators.pattern("[0-9 ]{10}")]),
       'city': new FormControl(null, Validators.required)
     })
@@ -79,7 +79,7 @@ export class UsersComponent implements OnInit {
  }
 
  delete(user:users){
-  if(window.confirm('Are you sure ? You want to delete'+ user.name + '?')){
+  if(window.confirm('Are you sure ? You want to delete'+' '+ user.name + '?')){
     this.fetchApi.deleteUser(user);
     this.toast.warning({detail:"Deleted",summary:"user Deleted successfully", duration:3000})
   }

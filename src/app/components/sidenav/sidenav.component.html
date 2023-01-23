@@ -1,5 +1,43 @@
+<!-- Header -->
+<nav class="nav" *ngIf="show">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQItEZqYrF2jOoRe9RySqykHndE2xpGDwaIsA&usqp=CAU" alt="logo">
+      <h1><a routerLink="/dashboards">Apna Market</a> </h1>
+      
+      <ul>
+        <li id="avtar" class="nav-item dropdown no-arrow">
+          <a class="nav-link dropdown-toggle"id="userDropdown" role="button"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img class="img-profile rounded-circle"
+                  src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp">
+          </a>
+          <!-- Dropdown - User Information -->
+          <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+              aria-labelledby="userDropdown">
+              <a class="dropdown-item" >
+                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Profile
+              </a>
+              <a class="dropdown-item">
+                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Settings
+              </a>
+              <a class="dropdown-item">
+                  <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Activity Log
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/logout" data-toggle="modal" data-target="#logoutModal">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Logout
+              </a>
+          </div>
+      </li>
+    </ul>
+    </nav>
 
-    <app-header *ngIf="show"></app-header>
+
+<!-- sidenav and main part -->
+
     <div id="back" class="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary ">
         <!-- Vertical Navbar -->
         <nav class="navbar show navbar-vertical h-lg-screen navbar-expand-lg px-0 py-3 navbar-light bg-white border-bottom border-bottom-lg-0 border-end-lg"
@@ -42,14 +80,14 @@
         </nav>
         <!-- Main content -->
         <div class="h-screen flex-grow-1 overflow-y-lg-auto">
-            <!-- Header -->
-
-            <!-- Main -->
+           
             <main class="py-6 bg-surface-secondary">
                 <div class="container-fluid">
                     <router-outlet></router-outlet>
-                    <!-- Card stats -->
+                
                 </div>
             </main>
         </div>
+        
     </div>
+   

@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 import { AddProductsComponent } from './components/add-products/add-products.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProductsComponent } from './components/products/products.component';
@@ -25,6 +26,7 @@ const routes: Routes = [
   {path:'users' , component:UsersComponent},
   {path:'root' , component:AppComponent},
   {path:'sidenav' , component:SidenavComponent},
+  // {path:'header' , component:HeaderComponent}
 ];
 
 @NgModule({

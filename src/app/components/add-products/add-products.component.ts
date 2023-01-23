@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators, MinLengthValidator } from '@angular/forms';
 import { NgToastService } from 'ng-angular-popup';
-import { finalize } from 'rxjs';
+import { ConnectableObservable, finalize } from 'rxjs';
 import { FileMetaData, fileData } from 'src/app/model/product';
 import { ProductManageService } from 'src/app/shared/product-manage.service';
 
@@ -31,8 +32,11 @@ export class AddProductsComponent implements OnInit {
     url: '',
 
   }
+
+  myUrl = ''
   constructor(private productsManage: ProductManageService, private firestorage: AngularFireStorage
-    , private firestore: AngularFirestore, private formBuilder: FormBuilder , private toast:NgToastService) { }
+, private formBuilder: FormBuilder , private toast:NgToastService) {
+     }
 
   ngOnInit(): void {
     this.myFiles = this.formBuilder.group({
@@ -45,8 +49,8 @@ export class AddProductsComponent implements OnInit {
 
     this.myFiles = new FormGroup({
       'names' : new FormControl(null , Validators.required),
-      'price' : new FormControl(null , [Validators.required, Validators.pattern("[0-9]{8}")]),
-      'discount' : new FormControl(null , [Validators.required , Validators.pattern("[0-9]{3}")])
+      'price' : new FormControl(null , [Validators.required, Validators.minLength(3), Validators.maxLength(8) ]),
+      'discount' : new FormControl(null , [Validators.required , Validators.minLength(1), Validators.maxLength(4)])
     })
   }
 
@@ -65,7 +69,6 @@ export class AddProductsComponent implements OnInit {
       storageRef.getDownloadURL().subscribe(downloadLink => {
         // Uploading image values
         this.currentFileUpload.url = downloadLink,
-        this.currentFileUpload.names = this.currentFileUpload.file.name
         
         // Uploading form values
         this.currentFileUpload.id = '';
@@ -100,7 +103,6 @@ export class AddProductsComponent implements OnInit {
     })
   }
 
-
   // Delete files method
   deleteFile(file: FileMetaData) {
     if (window.confirm('Are you sure you want to delete ' + file.names + '?')) {
@@ -110,8 +112,8 @@ export class AddProductsComponent implements OnInit {
     }
   }
 
-
-  download(){
-    
+  downloadfile(file : fileData){
+   console.log(file.url)
   }
+
 }
