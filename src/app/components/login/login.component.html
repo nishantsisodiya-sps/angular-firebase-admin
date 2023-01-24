@@ -1,7 +1,7 @@
 <div class="user-auth">
     <div class="myDiv">
        <h1>User Login</h1>
-       <form class="common-form">
+       <form [formGroup]="userLogin" class="common-form">
          <p class="error-p"></p>
          <input
            type="text"
@@ -9,6 +9,7 @@
            name="email"
            placeholder="Enter User Email"
           [(ngModel)]="email"
+          required
          />
          <input
          type="password"
@@ -16,10 +17,11 @@
          name="password"
          placeholder="Enter User Password"
          [(ngModel)]="password"
+         required
        />
        <br>
        <br>
-       <button  color="primary" class="btn btn-success" (click)="login()">Login</button>
+       <button  color="primary" class="btn btn-success" (click)="login(email , password)">Login</button>
        
        <br>
        <br>

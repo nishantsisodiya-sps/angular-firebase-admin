@@ -1,27 +1,27 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
-import { GoogleAuthProvider } from '@angular/fire/auth'
+import { GoogleAuthProvider, user } from '@angular/fire/auth'
 import { NgToastService } from 'ng-angular-popup';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  show: boolean = false
 
   constructor(private fireAuth:AngularFireAuth , private router:Router , private toast:NgToastService) { }
 
   //login method
-
-  login(email:string , password:string){
-    this.fireAuth.signInWithEmailAndPassword(email,password).then(res =>{
+  async login(email:string , password:string){
+    await this.fireAuth.signInWithEmailAndPassword(email,password).then(res =>{
       localStorage.setItem('token', 'true')
-
+      let token = localStorage.getItem("token")
       if(res.user?.emailVerified == true){
         this.router.navigate(['/dashboard'])
         this.toast.success({detail:"Logged in",summary:"Logged in successfully", duration:3000})
-      }else{
+      }
+      else{
         this.router.navigate(['/verify-email'])
         this.toast.error({detail:"Not found",summary:"Admin not found", duration:3000})
       }

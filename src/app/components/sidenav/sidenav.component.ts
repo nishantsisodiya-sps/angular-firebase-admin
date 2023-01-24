@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
-import { ApiDataService } from 'src/app/shared/api-data.service';
-import { AuthService } from 'src/app/shared/auth.service';
-import { HeaderComponent } from '../header/header.component';
+
 
 @Component({
   selector: 'app-sidenav',

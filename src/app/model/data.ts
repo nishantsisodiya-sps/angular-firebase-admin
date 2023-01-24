@@ -26,14 +26,6 @@ export var totalUsers =
         {
           "name": "USA",
           "value": 29801
-        },
-        {
-          "name": "Italy",
-          "value": 29823
-        },
-        {
-          "name": "UK",
-          "value": 53231
         }
       ];
 
