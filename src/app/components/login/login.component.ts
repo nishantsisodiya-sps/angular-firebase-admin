@@ -27,19 +27,21 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  login(email:string , password:string){
+   login(email:string , password:string){
     if(email == '' || password == ''){
       alert("please fill fields")
     }else if(this.email == 'nishantsisodiya.softprodigy@gmail.com' && this.password == '123456'){
-   this.auth.login(this.email , this.password);
-   setTimeout(() => {
-     this.sidenav.show = true
-   }, 750);
+   let mylogin = new Promise<void>((resolve, reject) => {
+     resolve(this.auth.login(this.email , this.password)) 
+   }) 
+
+   mylogin.then(()=>{
+    this.sidenav.show=true
+   })
   }else{
     alert("Please enter correct Email and Password")
   }
   }
 
-  
 
 }

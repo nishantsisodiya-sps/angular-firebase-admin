@@ -48,9 +48,13 @@ export class UsersComponent implements OnInit {
 
     this.userDetail = new FormGroup({
       'name' : new FormControl(null , Validators.required),
+      'editname' : new FormControl(null , Validators.required),
       'email': new FormControl(null, [Validators.required, Validators.email , Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")]),
+      'editemail': new FormControl(null, [Validators.required, Validators.email , Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")]),
       'contact': new FormControl(null, [Validators.required, Validators.pattern("[0-9 ]{10}")]),
-      'city': new FormControl(null, Validators.required)
+      'editcontact': new FormControl(null, [Validators.required, Validators.pattern("[0-9 ]{10}")]),
+      'city': new FormControl(null, Validators.required),
+      'editcity': new FormControl(null, Validators.required)
     })
 
   }
@@ -87,20 +91,24 @@ export class UsersComponent implements OnInit {
 
  editUser(user:users){
   this.editUserId = user.id
-  this.userDetail.controls['name'].setValue(user.name)
-  this.userDetail.controls['email'].setValue(user.email)
-  this.userDetail.controls['contact'].setValue(user.contact)
-  this.userDetail.controls['city'].setValue(user.city)
+  this.userDetail.controls['editname'].setValue(user.name)
+  this.userDetail.controls['editemail'].setValue(user.email)
+  this.userDetail.controls['editcontact'].setValue(user.contact)
+  this.userDetail.controls['editcity'].setValue(user.city)
  }
 
  update(user: users){
    this.myUsers.id = '';
-   this.myUsers.name = this.userDetail.value.name;
-   this.myUsers.email = this.userDetail.value.email;
-   this.myUsers.contact = this.userDetail.value.contact;
-   this.myUsers.city = this.userDetail.value.city;
+   this.myUsers.name = this.userDetail.value.editname;
+   this.myUsers.email = this.userDetail.value.editemail;
+   this.myUsers.contact = this.userDetail.value.editcontact;
+   this.myUsers.city = this.userDetail.value.editcity;
    this.firestore.doc('/users/' +this.editUserId).update(user) 
    this.toast.success({detail:"Updated",summary:"User Updated successfully", duration:3000})
+ }
+
+ resetform(){
+  
  }
 
 }

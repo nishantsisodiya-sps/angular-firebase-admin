@@ -4,7 +4,7 @@
         <div class=" col-12 text-sm-end">
             <div id="btnuser" class="mx-n1">
                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUser" type="submit"><i
-                        class="bi bi-plus"></i>Add User</button>
+                        class="bi bi-plus" (click)="resetform()"></i>Add User</button>
             </div>
         </div>
     </div>
@@ -59,7 +59,7 @@
 
 
 
-    <!-- Add employee modal -->
+    <!-- Add user modal -->
     
     <div class="modal fade overflow-hiddens" id="addUser" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -74,7 +74,7 @@
                     <form [formGroup]="userDetail">
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Name* </label>
-                            <input type="text" formControlName="name" class="form-control" id="name"
+                            <input type="text" formControlName="name" class="form-control" 
                                 aria-describedby="emailHelp">
                             <small class="text-danger"
                                 *ngIf="!userDetail.get('name')?.valid && userDetail.get('name')?.touched">*Please
@@ -133,26 +133,26 @@
                     <form [formGroup]="userDetail">
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Name </label>
-                            <input type="text" formControlName="name" class="form-control" id="name"
+                            <input type="text" formControlName="editname" class="form-control" id="name"
                                 aria-describedby="emailHelp">
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Email</label>
-                            <input type="email" formControlName="email" class="form-control" id="email"
+                            <input type="email" formControlName="editemail" class="form-control" id="email"
                                 aria-describedby="emailHelp">
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Contact </label>
-                            <input type="number" formControlName="contact" class="form-control" id="contact"
+                            <input type="number" formControlName="editcontact" class="form-control" id="contact"
                                 aria-describedby="emailHelp">
                                 <small class="text-danger"
-                                *ngIf="!userDetail.get('contact')?.valid && userDetail.get('contact')?.touched">*Please
+                                *ngIf="!userDetail.get('editcontact')?.valid && userDetail.get('editcontact')?.touched">*Please
                                 Enter Valid contact number
                                 </small>
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">City</label>
-                            <input type="text" formControlName="city" class="form-control" id="city"
+                            <input type="text" formControlName="editcity" class="form-control" id="city"
                                 aria-describedby="emailHelp">
                         </div>
                         <div class="modal-footer">
