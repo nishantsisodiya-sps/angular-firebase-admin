@@ -49,8 +49,8 @@ export class AddProductsComponent implements OnInit {
 
     this.myFiles = new FormGroup({
       'names' : new FormControl(null , Validators.required),
-      'price' : new FormControl(null , [Validators.required, Validators.minLength(3), Validators.maxLength(8) ]),
-      'discount' : new FormControl(null , [Validators.required , Validators.minLength(1), Validators.maxLength(4)])
+      'price' : new FormControl(null , [Validators.required, Validators.min(100), Validators.max(99999999) ]),
+      'discount' : new FormControl(null , [Validators.required , Validators.min(0), Validators.max(100)])
     })
   }
 
@@ -68,16 +68,24 @@ export class AddProductsComponent implements OnInit {
     uploadTask.snapshotChanges().pipe(finalize(() => {
       storageRef.getDownloadURL().subscribe(downloadLink => {
         // Uploading image values
-        this.currentFileUpload.url = downloadLink,
+        this.currentFileUpload.url = downloadLink;
         
         // Uploading form values
-        this.currentFileUpload.id = '';
-        this.currentFileUpload.names = this.myFiles.value.names;
-        this.currentFileUpload.price = this.myFiles.value.price;
-        this.currentFileUpload.discount = this.myFiles.value.discount;
-        this.productsManage.saveDataOfFile(this.currentFileUpload);
-        this.toast.success({detail:"Uploaded",summary:"Product uploaded successfully", duration:3000})
-      
+        
+        let name = this.myFiles.value.names
+        let nameRegex = new RegExp("^[a-zA-Z]+(([ ][a-zA-Z ])?[a-zA-Z]*)*$")
+        let nameResult = nameRegex.test(name)
+        
+        if(nameResult == true){
+          this.currentFileUpload.id = '';
+          this.currentFileUpload.names = this.myFiles.value.names;
+          this.currentFileUpload.price = this.myFiles.value.price;
+          this.currentFileUpload.discount = this.myFiles.value.discount;
+          this.productsManage.saveDataOfFile(this.currentFileUpload);
+          this.toast.success({detail:"Uploaded",summary:"Product uploaded successfully", duration:3000})
+        }else{
+          alert("Please fill Name correctly")
+        }
       })
     })
     ).subscribe((res: any) => {

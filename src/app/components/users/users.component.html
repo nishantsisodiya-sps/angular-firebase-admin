@@ -1,10 +1,10 @@
 <div class="containers">
     <div class="card border-1 mb-7">
-        <h2 class="text-danger text-center d-inline">Add Users</h2>
+        <h2 id="h2" class="text-danger text-center d-inline">Add Users</h2>
         <div class=" col-12 text-sm-end">
             <div id="btnuser" class="mx-n1">
                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUser" type="submit"><i
-                        class="bi bi-plus" (click)="resetform()"></i>Add User</button>
+                        class="bi bi-plus" ></i>Add User</button>
             </div>
         </div>
     </div>
@@ -74,7 +74,7 @@
                     <form [formGroup]="userDetail">
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Name* </label>
-                            <input type="text" formControlName="name" class="form-control" 
+                            <input type="text" formControlName="name" class="form-control"
                                 aria-describedby="emailHelp">
                             <small class="text-danger"
                                 *ngIf="!userDetail.get('name')?.valid && userDetail.get('name')?.touched">*Please
@@ -107,8 +107,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
-                                (click)="addUsers()">Add User</button>
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="addUsers()">Add User</button>
                         </div>
                     </form>
                 </div>
